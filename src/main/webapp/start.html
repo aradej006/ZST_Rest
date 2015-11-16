@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="snmp">
+<head>
+    <meta charset="UTF-8">
+    <title>SNMP WebApp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+          crossorigin="anonymous">
+</head>
+<body ng-controller="snmpCtrl">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ng-form>
+                <p>
+                    Insert OID<br/>
+                    <input type="text" ng-model="oid">
+                    <button type="button" ng-click="getOid(oid)">Get Object</button>
+                    <br/>
+                    Value='{{oidValue}}'
+                </p>
+            </ng-form>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <ng-form>
+                <p>
+                    Insert Table OID<br/>
+                    <input type="text" ng-model="tableOid">
+                    <button type="button" ng-click="getTable(tableOid)">Get Table</button>
+                    <br/>
+                </p>
+            </ng-form>
+
+            <p>
+            <table ng-show="oids != undefined" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <td ng-repeat="h in headers">{{h.value}}</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="o in oids">
+                    <td ng-repeat="col in o">{{col.value}}</td>
+                </tr>
+                </tbody>
+            </table>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="application/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+<script type="application/javascript" src="script.js"></script>
+</body>
+</html>
