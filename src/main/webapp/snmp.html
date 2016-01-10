@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="snmp">
+<head>
+    <meta charset="UTF-8">
+    <title>SNMP WebApp</title>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.0.js"></script>
+    <script type="application/javascript" src="script.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .nav-tabs > li > div {
+            margin-right: 2px;
+            line-height: 1.42857143;
+            border: 1px solid transparent;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .nav-tabs > li > div:hover {
+            border-color: #eee #eee #ddd;
+        }
+
+        .nav-tabs > li.active > div, .nav-tabs > li.active > div:hover {
+            color: #555;
+            cursor: default;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+
+        .nav > li > div {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+
+        .nav > li > div:hover {
+            background-color: #eee;
+        }
+
+        .uib-tab > div {
+            color: #337ab7;
+            cursor: pointer;
+        }
+
+        .nav-tabs > li.disabled > div {
+            color: #999;
+        }
+
+        .nav-tabs>li.disabled>div:hover, .nav-tabs>li.disabled>div:focus {
+            color: #999;
+            text-decoration: none;
+            background-color: transparent;
+            cursor: not-allowed;
+        }
+
+        form.tab-form-demo .tab-pane {
+            margin: 20px 20px;
+        }
+    </style>
+</head>
+<body ng-controller="snmpCtrl">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <uib-tabset justified="true">
+                <uib-tab heading="Device Info">
+                    <button type="button" class="btn btn-success" ng-click="getValues()">Refresh</button> <br/>
+                    SysUpTime={{sysUpTime}} <br/>
+                    SysName={{sysName}} <br/>
+                    SystemDesc={{systemDate}} <br/>
+                </uib-tab>
+                <uib-tab heading="Network Info">
+                    <button type="button" class="btn btn-success" ng-click="getValues()">Refresh</button> <br/>
+                    <p>
+                    <h3>ipAddrTable</h3>
+                    <table ng-show="ipElements != undefined" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td ng-repeat="h in ipHeaders">{{h.value}}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="o in ipElements">
+                            <td ng-repeat="col in o">{{col.value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                    <p>
+                    <h3>tcpConnTable</h3>
+                    <table ng-show="tcpElements != undefined" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td ng-repeat="h in tcpHeaders">{{h.value}}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="o in tcpElements">
+                            <td ng-repeat="col in o">{{col.value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                    <p>
+                    <h3>udpTable</h3>
+                    <table ng-show="udpElements != undefined" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td ng-repeat="h in udpHeaders">{{h.value}}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="o in udpElements">
+                            <td ng-repeat="col in o">{{col.value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </p>
+
+                </uib-tab>
+                <uib-tab heading="System Info">
+                    <button type="button" class="btn btn-success" ng-click="getValues()">Refresh</button> <br/>
+                    <p>
+                    <h3>hrStorageTable</h3>
+                    <table ng-show="hrStorageElements != undefined" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td ng-repeat="h in hrStorageHeaders">{{h.value}}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="o in hrStorageElements">
+                            <td ng-repeat="col in o">{{col.value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                    <p>
+                    <h3>hrDiskStorageTable</h3>
+                    <table ng-show="hrDiskElements != undefined" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td ng-repeat="h in hrDiskHeaders">{{h.value}}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="o in hrDiskElements">
+                            <td ng-repeat="col in o">{{col.value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
