@@ -9,10 +9,30 @@
     <script type="application/javascript" src="script.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        .container {
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+        body {
+            background: #fcfcfc;
+        }
+
+        .btn-success {
+            float: right;
+            margin-top: 15px;
+        }
+
+        .tab-content>.active {
+            border: 1px solid #dddddd;
+            border-top: 0px solid transparent;
+            padding: 0px 15px 15px;
+            color: #7b7b7b;
+            background: #fff;
+        }
+
         .nav-tabs > li > div {
-            margin-right: 2px;
             line-height: 1.42857143;
-            border: 1px solid transparent;
+            border-bottom: 1px solid #dddddd;
             border-radius: 4px 4px 0 0;
         }
 
@@ -32,14 +52,16 @@
             position: relative;
             display: block;
             padding: 10px 15px;
+            font-weight:    bold;
         }
 
         .nav > li > div:hover {
-            background-color: #eee;
+            background-color: #a2e3a2;
+
         }
 
         .uib-tab > div {
-            color: #337ab7;
+            color: #4CAE4C;
             cursor: pointer;
         }
 
@@ -57,6 +79,20 @@
         form.tab-form-demo .tab-pane {
             margin: 20px 20px;
         }
+
+        h3:first-of-type {
+            margin-top: 6px;
+        }
+
+        h3 {
+            color: #4CAE4C;
+            border-bottom: 1px solid #dddddd ;
+            padding: 0px 0px 3px 10px;
+        }
+
+        thead {
+            font-weight:bold;
+        }
     </style>
 </head>
 <body ng-controller="snmpCtrl">
@@ -66,9 +102,10 @@
             <uib-tabset justified="true">
                 <uib-tab heading="Device Info">
                     <button type="button" class="btn btn-success" ng-click="getValues()">Refresh</button> <br/>
-                    SysUpTime={{sysUpTime}} <br/>
-                    SysName={{sysName}} <br/>
-                    SystemDesc={{systemDate}} <br/>
+                    <h3>About device</h3>
+                    <b>SysUpTime:</b> {{sysUpTime}} <br/>
+                     <b>SysName:</b>  {{sysName}}<br/>
+                     <b>SystemDesc:</b>  {{systemDate}}<br/>
                 </uib-tab>
                 <uib-tab heading="Network Info">
                     <button type="button" class="btn btn-success" ng-click="getValues()">Refresh</button> <br/>
