@@ -38,30 +38,49 @@ angular.module('snmp', ['ngAnimate', 'ui.bootstrap'])
         };
 
         $scope.getValues = function(){
-            $scope.getValue("1.3.6.1.2.1.1.3.0").success(function(result){
-                $scope.sysUpTime = result[0];
+            $scope.getValue("1.3.6.1.2.1.6.1.0").success(function(result){
+                $scope.tcpRtoAlgorithm = result[0];
             });
-            $scope.getValue("1.3.6.1.2.1.1.5.0").success(function(result){
-                $scope.sysName = result[0];
+            $scope.getValue("1.3.6.1.2.1.6.2.0").success(function(result){
+                $scope.tcpRtoMin = result[0];
             });
-            $scope.getValue("1.3.6.1.2.1.1.1.0").success(function(result){
-                $scope.systemDate = result[0];
+            $scope.getValue("1.3.6.1.2.1.6.3.0").success(function(result){
+                $scope.tcpRtoMax = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.4.0").success(function(result){
+                $scope.tcpMaxConn = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.5.0").success(function(result){
+                $scope.tcpActiveOpens = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.6.0").success(function(result){
+                $scope.tcpPassiveOpens = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.7.0").success(function(result){
+                $scope.tcpAttemptFails = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.8.0").success(function(result){
+                $scope.tcpEstabResets = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.9.0").success(function(result){
+                $scope.tcpCurrEstab = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.10.0").success(function(result){
+                $scope.tcpInSegs = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.11.0").success(function(result){
+                $scope.tcpOutSegs = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.12.0").success(function(result){
+                $scope.tcpRetransSegs = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.14.0").success(function(result){
+                $scope.tcpInErrs = result[0];
+            });
+            $scope.getValue("1.3.6.1.2.1.6.15.0").success(function(result){
+                $scope.tcpOutRsts = result[0];
             });
 
-            $scope.getTable2("1.3.6.1.2.1.4.20").success(function(result){
-                $scope.ipElements = [];
-                $scope.ipHeaders = [{value:"ipAdEntAddr"},
-                    {value:"ipAdEntIfIndex"},
-                    {value:"ipAdEntNetMask"},
-                    {value:"ipAdEntBcastAddr"},
-                    {value:"ipAdEntReasmMaxSize"}];
-                for(var i = 0;i<result.length;i++){
-                    $scope.ipElements.push([]);
-                    for(var j = 0;j<result[i].length;j++){
-                        $scope.ipElements[i].push({value:result[i][j]});
-                    }
-                }
-            });
             $scope.getTable2("1.3.6.1.2.1.6.13").success(function(result){
                 $scope.tcpElements = [];
                 $scope.tcpHeaders = [{value:"tcpConnState"},
@@ -76,46 +95,7 @@ angular.module('snmp', ['ngAnimate', 'ui.bootstrap'])
                     }
                 }
             });
-            $scope.getTable2("1.3.6.1.2.1.7.5").success(function(result){
-                $scope.udpElements = [];
-                $scope.udpHeaders = [{value:"udpLocalAddress"},
-                    {value:"udpLocalPort"}];
-                for(var i = 0;i<result.length;i++){
-                    $scope.udpElements.push([]);
-                    for(var j = 0;j<result[i].length;j++){
-                        $scope.udpElements[i].push({value:result[i][j]});
-                    }
-                }
-            });
-            $scope.getTable2("1.3.6.1.2.1.25.2.3").success(function(result){
-                $scope.hrStorageElements = [];
-                $scope.hrStorageHeaders = [{value:"hrStorageIndex"},
-                    {value:"hrStorageType"},
-                    {value:"hrStorageDescr"},
-                    {value:"hrStorageAllocationUnit"},
-                    {value:"hrStorageSize"},
-                    {value:"hrStorageUsed"},
-                    {value:"hrStorageAllocationFaliures"}];
-                for(var i = 0;i<result.length;i++){
-                    $scope.hrStorageElements.push([]);
-                    for(var j = 0;j<result[i].length;j++){
-                        $scope.hrStorageElements[i].push({value:result[i][j]});
-                    }
-                }
-            });
-            $scope.getTable2("1.3.6.1.2.1.25.3.6").success(function(result){
-                $scope.hrDiskElements = [];
-                $scope.hrDiskHeaders = [{value:"hrDiskStorageAccess"},
-                    {value:"hrDiskStorageMedia"},
-                    {value:"hrDiskStorageRemoveble"},
-                    {value:"hrDiskStorageCapacity"}];
-                for(var i = 0;i<result.length;i++){
-                    $scope.hrDiskElements.push([]);
-                    for(var j = 0;j<result[i].length;j++){
-                        $scope.hrDiskElements[i].push({value:result[i][j]});
-                    }
-                }
-            });
+
         };
 
         $scope.getValues();

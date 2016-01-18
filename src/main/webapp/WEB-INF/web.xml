@@ -8,7 +8,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>start.html</welcome-file>
+        <welcome-file>snmp.html</welcome-file>
     </welcome-file-list>
     
 </web-app>
